@@ -1,5 +1,3 @@
-# ReactMastery
-
 Welcome to **ReactMastery**, a comprehensive project designed to help you master React.js through hands-on learning and practical application. This repository serves as a learning path for developers of all skill levels to deepen their understanding of React.js, covering everything from basic concepts to advanced techniques.
 
 ## Table of Contents
@@ -23,6 +21,8 @@ It allows us to build user interfaces and frontends of websites and applications
 By following the tutorials and building the sample projects in this repository, you will gain practical experience and develop a solid understanding of React.js fundamentals and best practices.
 
 React uses something called the Virtual DOM to make updates faster. The Virtual DOM is like a lightweight copy of the real DOM (the structure of your web page). When something changes in your React app, React updates the Virtual DOM first. Then, it compares this updated Virtual DOM with the real DOM to see what has changed. Finally, React only updates the parts of the real DOM that need to change. This makes your app faster and more efficient.
+
+<img src="https://github.com/potatoscript/MyDocuments/blob/main/virtual_dom.png?raw=true" />
 
 A component is a reusable piece of code that can be used to build elements on a web page.
 
