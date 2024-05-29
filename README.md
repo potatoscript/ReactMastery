@@ -43,7 +43,7 @@ Global state relates to data that is shared across the entire app, not just a si
 To get started with ReactMastery, clone the repository and install the necessary dependencies:
 
 ```bash
-git clone https://github.com/yourusername/ReactMastery.git
+git clone https://github.com/potatoscript/ReactMastery.git
 cd ReactMastery
 npm install
 ```
@@ -111,7 +111,7 @@ Contributions are welcome! If you have ideas for improvements or new features, f
 ## Resources
 
 - [React Documentation](https://reactjs.org/docs/getting-started.html)
-- [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+- [React](https://react.dev/)
 - [JavaScript Info](https://javascript.info/)
 
 ## License
