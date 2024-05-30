@@ -104,6 +104,89 @@ This will execute the test suite and provide feedback on the functionality of yo
 
 This project uses GitHub Actions for continuous integration. The workflow file located at `.github/workflows/ci.yml` ensures that all tests are run on every push and pull request to the `main` branch.
 
+
+## Setting up GitHub Pages:
+
+### Adjust the Path and Configuration
+
+1. **Update Paths in `index.html`**:
+   Since your `index.html` is within the `docs` directory, the paths to your assets need to be relative to that directory.
+
+2. **Ensure Correct Build Output**:
+   Make sure Vite is configured to output to the `docs` directory.
+
+### Update `vite.config.js`
+
+Ensure your `vite.config.js` includes the correct base path and output directory:
+
+```javascript
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+
+// https://vitejs.dev/config/
+export default defineConfig({
+  plugins: [react()],
+  server: {
+    port: 3000,
+  },
+  build: {
+    outDir: 'docs',
+  },
+  base: '/ReactMastery/', // Set this to your repository name
+})
+```
+
+### Update `index.html`
+
+Adjust the paths in `index.html` to ensure they are correctly referenced relative to the `docs` directory:
+
+```html
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="./vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Potato Skills</title>
+  </head>
+  <body>
+    <div id="root">abc</div>
+    <script type="module" src="./src/main.jsx"></script>
+  </body>
+</html>
+```
+
+### Build and Deploy
+
+1. **Build Your Project**:
+   Run the build command to generate the `docs` folder with your built project:
+   ```sh
+   npm run build
+   ```
+
+2. **Push to GitHub**:
+   Ensure the `docs` folder and all necessary files are committed and pushed to your GitHub repository:
+   ```sh
+   git add docs
+   git commit -m "Add built project"
+   git push origin main
+   ```
+
+### Verify GitHub Pages Settings
+
+1. Go to your repository on GitHub.
+2. Click on **Settings**.
+3. Scroll down to the **GitHub Pages** section.
+4. Under **Source**, select the `main` branch and `/docs` folder.
+5. Save your settings.
+
+### Check Your GitHub Pages URL
+
+Navigate to `https://<your-username>.github.io/<repository-name>/` to see if your GitHub Pages site is correctly displaying the content from `main.jsx`.
+
+If these steps are followed correctly, your GitHub Pages should load the `index.html` from the `docs` directory and correctly display the content from `main.jsx`.
+
+
 ## Contributing
 
 Contributions are welcome! If you have ideas for improvements or new features, feel free to open an issue or submit a pull request. Please refer to the [contributing guidelines](CONTRIBUTING.md) for more information.
