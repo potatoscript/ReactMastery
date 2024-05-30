@@ -10,5 +10,4 @@ export default defineConfig({
   build: {
     outDir: 'docs',
   },
-  base: '/ReactMastery/', // Set this to your repository name
 })
