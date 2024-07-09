@@ -1,0 +1,52 @@
+[
+    {
+      "id": "1",
+      "type": "Russet Potatoes",	
+      "description": "Starchy potatoes with a rough brown skin and white flesh.",				
+      "use": "Perfect for baking, mashing, and frying",
+      "menu": {
+        "type":"Baked Potato",
+        "ingredient":"Russet potatoes, butter, sour cream, cheese, bacon bits, chives."
+      }
+    },
+    {
+      "id": "2",
+      "type": "Yukon Gold Potatoes",	
+      "description": "Waxy potatoes with a smooth, thin yellow skin and yellow flesh.",				
+      "use": "Great for roasting, boiling, and making creamy mashed potatoes.",
+      "menu": {
+        "type":"Red or New Potatoes",
+        "ingredient":"Boiled potatoes, mayonnaise, mustard, celery, onion, pickles, salt, pepper."
+      }
+    },
+    {
+      "id": "3",
+      "type": "Red Potatoes",	
+      "description": "Waxy potatoes with red skin and white flesh.",				
+      "use": "Best for boiling, steaming, and roasting.",
+      "menu": {
+        "type":"Red Potatoes",
+        "ingredient":"Red potatoes, olive oil, garlic, rosemary, salt, pepper."
+      }
+    },
+    {
+      "id": "4",
+      "type": "Fingerling Potatoes",	
+      "description": "Small, finger-shaped potatoes with a variety of skin colors.",				
+      "use": "Ideal for roasting and boiling.",
+      "menu": {
+        "type":"Fingerling Potatoes",
+        "ingredient":"Fingerling potatoes, olive oil, garlic, thyme, salt, pepper."
+      }
+    },
+    {
+      "id": "5",
+      "type": "Purple Potatoes",	
+      "description": "Potatoes with purple skin and flesh, rich in antioxidants.",				
+      "use": "Suitable for roasting, baking, and making colorful mashed potatoes.",
+      "menu": {
+        "type":"Yukon Gold Potatoes",
+        "ingredient":"Yukon Gold potatoes, butter, milk or cream, salt, pepper."
+      }
+    }
+  ]
