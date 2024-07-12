@@ -464,6 +464,161 @@ If these steps are followed correctly, your GitHub Pages should load the `index.
        ```
 
 
+12. **MenuListingsページの作成**:
+   - **isHomeプロップの作成**:
+     ```jsx
+     const MenuListings = ({ isHome = false }) => {
+       const menuListings = isHome ? menus.slice(0, 3) : menus;
+       return (
+         <section className="bg-blue-50 px-4 py-10">
+           <div className="container-xl lg:container m-auto">
+             <h2 className="text-3xl font-bold text-indigo-500 mb-6 text-center">
+               {isHome ? 'Recent Menus' : 'Browse Menus'}
+             </h2>
+             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+               {menuListings.map((menu) => (
+                 <MenuListing key={menu.id} menu={menu} />
+               ))}
+             </div>
+           </div>
+         </section>
+       );
+     };
+     ```
+
+   - **HomePageでのisHome設定**:
+     ```jsx
+     const HomePage = () => {
+       return (
+         <>
+           <Menu title="Potato" subtitle="I like potato" />
+           <HomeCards />
+           <MenuListings isHome={true} />
+           <ViewAllMenus />
+         </>
+       );
+     };
+     ```
+
+13. **バックエンドからのデータ取得 (Json Serverを使用)**:
+   - **Json Serverの設定**:
+     - Json Serverを開発依存としてインストール:
+       ```bash
+       npm i -D json-server
+       ```
+     - `package.json`ファイルのスクリプトに以下を追加:
+       ```json
+       "scripts": {
+         "dev": "vite",
+         "build": "vite build",
+         "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
+         "preview": "vite preview",
+         "server": "json-server --watch src/foods.json --port 8000"
+       },
+       ```
+     - Json Serverを起動:
+       ```bash
+       npm run server
+       ```
+
+   - **MenuListingsコンポーネントでのデータ取得とローディングスピナーの実装**:
+     - `useState`と`useEffect`をインポート:
+       ```jsx
+       import { useState, useEffect } from 'react';
+       ```
+     - ステートとローディングの設定:
+       ```jsx
+       const [menus, setMenus] = useState([]);
+       const [loading, setLoading] = useState(true);
+       ```
+     - `useEffect`フックでデータを取得:
+       ```jsx
+       useEffect(() => {
+         const fetchMenus = async () => {
+           try {
+             const res = await fetch('http://localhost:8000/menus');
+             const data = await res.json();
+             setMenus(data);
+           } catch (error) {
+             console.log('Error fetching data', error);
+           } finally {
+             setLoading(false);
+           }
+         };
+         fetchMenus();
+       }, []);
+       ```
+
+   - **メニューリストのレンダリング**:
+     ```jsx
+     return (
+       <section className="bg-blue-50 px-4 py-10">
+         <div className="container-xl lg:container m-auto">
+           <h2 className="text-3xl font-bold text-indigo-500 mb-6 text-center">
+             {isHome ? 'Recent Menus' : 'Browse Menus'}
+           </h2>
+           {loading ? (<Spinner loading={loading} />) : (
+             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+               {menus.map((menu) => (
+                 <MenuListing key={menu.id} menu={menu} />
+               ))}
+             </div>
+           )}
+         </div>
+       </section>
+     );
+     ```
+
+14. **スピナーの使用 (react-spinnersを使用)**:
+   - **react-spinnersのインストール**:
+     ```bash
+     npm i react-spinners
+     ```
+   - **Spinnerコンポーネントの作成**:
+     ```jsx
+     import ClipLoader from 'react-spinners/ClipLoader';
+
+     const override = {
+       display: 'block',
+       margin: '100px auto',
+     };
+
+     const Spinner = ({ loading }) => {
+       return (
+         <ClipLoader
+           color="#4338ca"
+           loading={loading}
+           cssOverride={override}
+           size={150}
+         />
+       );
+     };
+
+     export default Spinner;
+     ```
+
+   - **MenuListingsコンポーネントでスピナーを使用**:
+     ```jsx
+     import Spinner from './Spinner';
+
+     return (
+       <section className="bg-blue-50 px-4 py-10">
+         <div className="container-xl lg:container m-auto">
+           <h2 className="text-3xl font-bold text-indigo-500 mb-6 text-center">
+             {isHome ? 'Recent Menus' : 'Browse Menus'}
+           </h2>
+           {loading ? (<Spinner loading={loading} />) : (
+             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+               {menus.map((menu) => (
+                 <MenuListing key={menu.id} menu={menu} />
+               ))}
+             </div>
+           )}
+         </div>
+       </section>
+     );
+     ```
+
 ## Contributing
 
 Contributions are welcome! If you have ideas for improvements or new features, feel free to open an issue or submit a pull request. Please refer to the [contributing guidelines](CONTRIBUTING.md) for more information.
