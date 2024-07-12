@@ -1,5 +1,6 @@
 import React from 'react'
 import { useState } from 'react'
+import { FaCertificate  } from 'react-icons/fa'
 
 const MenuListing = (menu) => {
 
@@ -28,7 +29,7 @@ const MenuListing = (menu) => {
             <div className="border border-gray-100 mb-5"></div>
             <div className="flex flex-col lg:flex-row justify-between mb-4">
                 <div className="text-orange-700 mb-3">
-                    <i className="fa-solid fa-location-dot text-lg"></i>
+                    <FaCertificate className='inline text-lg mb-1' />
                     {menu.menu.type}
                 </div>
                 <a href={`/menu/${menu.id}`} className="h-[36px] bg-indigo-600 text-white px-4 py-2 rounded-lg text-center text-sm">

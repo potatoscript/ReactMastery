@@ -1,21 +1,28 @@
 import React from 'react'
-import Navbar from "./components/Navbar"
-import Section1 from './components/section1'
-import HomeCards from './components/HomeCards'
-import MenuListings from './components/MenuListings'
-import ViewAllMenus from './components/ViewAllMenus'
+import { Route, 
+         createBrowserRouter, 
+         createRoutesFromElements,
+         RouterProvider
+} from 'react-router-dom';
+import MainLayout from './layouts/MainLayout';
+import HomePage from './pages/HomePage';
+import MenusPage from './pages/MenusPage';
+import NotFoundPage from './pages/NotFoundPage';
+
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route path='/' element={<MainLayout />}>
+      <Route index element={<HomePage />} />
+      <Route path='/menus' element={<MenusPage />} />
+      <Route path='*' element={<NotFoundPage />} />
+    </Route>
+  )
+);
 
 const App = () => {
   return (
-    <>
-      <Navbar /> 
-      <Section1 title="Potato" subtitle="I like potato" />
-      <HomeCards />
-      <MenuListings />
-      <ViewAllMenus />
-
-    </>
+    <RouterProvider router={router} />
   )
-}
+};
 
 export default App
